@@ -3,6 +3,13 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 		  http://java.sun.com/xml/ns/javaee/web-app_4_0.xsd"
-           version="4.0">
-
+           version="3.0">
+    <servlet>
+        <servlet-name>Servlet</servlet-name>
+        <servlet-class>no.hvl.dat108.Servlet</servlet-class>
+        <init-param>
+            <param-name>greeting</param-name>
+            <param-value>Heia Varegg!</param-value>
+        </init-param>
+    </servlet>
 </web-app>

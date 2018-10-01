@@ -14,6 +14,16 @@ public class Servlet extends HttpServlet {
 
     }
 
+    String greetingForThisServletOnly;
+
+
+    @Override
+    public void init() throws ServletException {
+
+        greetingForThisServletOnly = getServletConfig().getInitParameter("greeting");
+    }
+
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
 
@@ -25,7 +35,7 @@ public class Servlet extends HttpServlet {
         out.println("</head>");
         out.println("<body>");
         out.println("<h1>Hallo</h1>");
-        out.println("<p>Hei " + "Eirik" + " " + "Alvestad" +"</p>");
+        out.println("<p>Hei " + greetingForThisServletOnly + " " + "Alvestad" +"</p>");
         out.println("</body>");
         out.println("</html>");
     }
