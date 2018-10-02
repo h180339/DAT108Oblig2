@@ -5,11 +5,15 @@
 		  http://java.sun.com/xml/ns/javaee/web-app_4_0.xsd"
            version="3.0">
     <servlet>
-        <servlet-name>Servlet</servlet-name>
-        <servlet-class>no.hvl.dat108.Servlet</servlet-class>
+        <servlet-name>LoggInnServlet</servlet-name>
+        <servlet-class>no.hvl.dat108.LoggInnServlet</servlet-class>
         <init-param>
-            <param-name>greeting</param-name>
-            <param-value>Heia Varegg!</param-value>
+            <param-name>RiktigPassord</param-name>
+            <param-value>Per</param-value>
+        </init-param>
+        <init-param>
+            <param-name>LoginTime</param-name>
+            <param-value>15</param-value>
         </init-param>
     </servlet>
 </web-app>
