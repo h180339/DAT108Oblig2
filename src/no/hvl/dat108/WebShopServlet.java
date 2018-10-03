@@ -1,10 +1,8 @@
 package no.hvl.dat108;
 
-import static no.hvl.dat108.UrlMappings.LOGIN_URL;
-import static no.hvl.dat108.UrlMappings.WEBSHOP_URL;
 
-import java.io.IOException;
-import java.io.PrintWriter;
+
+import org.apache.commons.text.StringEscapeUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import static no.hvl.dat108.UrlMappings.LOGIN_URL;
+import static no.hvl.dat108.UrlMappings.WEBSHOP_URL;
 
 @WebServlet(WEBSHOP_URL)
 public class WebShopServlet extends HttpServlet {
@@ -83,7 +86,7 @@ public class WebShopServlet extends HttpServlet {
 				CartItem sletteItem = (CartItem) sesjon.getAttribute(sletteItemNavn);
 				cart.removeItem(sletteItem);
 			}else {
-				String itemNavn = request.getParameter("vareInput");
+				String itemNavn = StringEscapeUtils.escapeHtml4(request.getParameter("vareInput"));
 				if(!itemNavn.equals("")) {
 					CartItem newCartItem = new CartItem(itemNavn);
 					cart.addItem(newCartItem);
