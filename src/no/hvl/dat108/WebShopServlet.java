@@ -94,7 +94,6 @@ public class WebShopServlet extends HttpServlet {
 						sesjon.setAttribute(itemNavn, newCartItem);
 					}
 				}
-
 			}
 			response.sendRedirect(WEBSHOP_URL);
 		}
