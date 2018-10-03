@@ -23,14 +23,7 @@ public class WebShopServlet extends HttpServlet {
 
         // Inn noe kode her i forbindelse med autorisasjon?
 		HttpSession sesjon = request.getSession(false);
-		System.out.println(sesjon);
 
-
-		/*
-		if (sesjon == null) {
-			response.sendRedirect("/" + LOGIN_URL + "?requiresLogin");
-		}
-		*/
 
 		if (sesjon!= null) {
 			// Inn noe kode her i forbindelse med uthenting av sesjonsdata?
@@ -91,12 +84,14 @@ public class WebShopServlet extends HttpServlet {
 				cart.removeItem(sletteItem);
 			}else {
 				String itemNavn = request.getParameter("vareInput");
-				CartItem newCartItem = new CartItem(itemNavn);
-
-				cart.addItem(newCartItem);
-				if(itemNavn != null) {
-					sesjon.setAttribute(itemNavn, newCartItem);
+				if(!itemNavn.equals("")) {
+					CartItem newCartItem = new CartItem(itemNavn);
+					cart.addItem(newCartItem);
+					if(itemNavn != null) {
+						sesjon.setAttribute(itemNavn, newCartItem);
+					}
 				}
+
 			}
 			response.sendRedirect(WEBSHOP_URL);
 		}
