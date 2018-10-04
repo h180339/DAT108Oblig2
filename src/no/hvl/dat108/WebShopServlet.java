@@ -25,13 +25,11 @@ public class WebShopServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-        // Inn noe kode her i forbindelse med autorisasjon?
 		HttpSession sesjon = request.getSession(false);
 
 
 		if (sesjon!= null) {
-			// Inn noe kode her i forbindelse med uthenting av sesjonsdata?
-			//String bruker = (String) sesjon.getAttribute("bruker");
+
 			Cart cart = (Cart) sesjon.getAttribute("cart");
 
 			response.setContentType("text/html; charset=ISO-8859-1");
@@ -46,24 +44,19 @@ public class WebShopServlet extends HttpServlet {
 			out.println("</head>");
 			out.println("<body>");
 
-			// Inn noe kode her for "Du er innlogget som <bruker>"?
 
 			out.println("<h2>Min handlekurv:</h2>");
 			out.println("<form action=\"" + WEBSHOP_URL + "\" method=\"post\">");
 			out.println("<input style=\"margin-right:20px\" type=\"submit\" value=\"Legg i handlekurv\" />" + "<input type=\"text\" name=\"vareInput\" />");
 			out.println("</form>");
 
-			// Inn noe kode her for å vise innhold i handlevogn:
 			out.println("<form action=\"" + WEBSHOP_URL + "\" method=\"post\">");
 			List<CartItem> list = cart.getItems();
-			synchronized (list) {
-				for (CartItem item : list) {
-					out.println("<p>" + "<button style=\"margin-right:20px\" type=\"submit\" value=\"" + item.getName() + "\" name=\"sletting\"/>slett </button>" + item.getName() + "</p>");
-				}
+			for (CartItem item : list) {
+				out.println("<p>" + "<button style=\"margin-right:20px\" type=\"submit\" value=\"" + item.getName() + "\" name=\"sletting\"/>slett </button>" + item.getName() + "</p>");
 			}
 
 			out.println("</form>");
-
 			out.println("</body>");
 			out.println("</html>");
 		} else {
@@ -76,14 +69,12 @@ public class WebShopServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-        // Inn noe kode her i forbindelse med autorisasjon?
 		HttpSession sesjon = request.getSession(false);
 
-		if(sesjon == null /*|| sesjon.getAttribute("bruker") == null*/) {
+		if(sesjon == null) {
 			response.sendRedirect(LOGIN_URL + "?requiresLogin");
 
 		}else {
-			// Inn noe kode her i forbindelse med oppdatering av sesjonsdata?
 			Cart cart = (Cart) sesjon.getAttribute("cart");
 
 			if (request.getParameter("sletting") != null) {

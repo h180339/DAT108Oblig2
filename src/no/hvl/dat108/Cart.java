@@ -6,14 +6,18 @@ import java.util.List;
 
 public class Cart {
     
-    private List<CartItem> items = Collections.synchronizedList(new ArrayList<>());
+    private List<CartItem> items = new ArrayList<>();
     
     public void addItem(CartItem item) {
-        items.add(item);
+        synchronized (this) {
+            items.add(item);
+        }
     }
 
     public void removeItem(CartItem item) {
-        items.remove(item);
+        synchronized (this) {
+            items.remove(item);
+        }
     }
     
     public List<CartItem> getItems() {

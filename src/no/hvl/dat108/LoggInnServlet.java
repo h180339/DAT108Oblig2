@@ -28,7 +28,6 @@ public class LoggInnServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
 
-        // Inn noe kode her i forbindelse med evt. feilmeldinger?
         String invalidPassword = request.getParameter("invalidPassword");
         String feilmelding = "";
         if (invalidPassword != null) {
@@ -39,7 +38,6 @@ public class LoggInnServlet extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
-        //html head
         out.println("<!DOCTYPE html>");
         out.println("<html>");
         out.println("<head>");
@@ -48,10 +46,8 @@ public class LoggInnServlet extends HttpServlet {
         out.println("</head>");
         out.println("<body>");
         
-        // Inn noe kode her i forbindelse med evt. feilmeldinger?
         out.println("<p>" + feilmelding + "</p>");
 
-        //html for login
         out.println("<form action=\"" + LOGIN_URL + "\" method=\"post\">");
         out.println("  <fieldset>");
         out.println("    <legend>Login</legend>");
@@ -67,7 +63,6 @@ public class LoggInnServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
 
-        // Inn noe kode her i forbindelse med innlogging av bruker?
         String passord = request.getParameter("passord");
         if(passord == null || !passord.equals(riktigPassord)) {
             response.sendRedirect(LOGIN_URL + "?invalidPassword");
@@ -82,10 +77,7 @@ public class LoggInnServlet extends HttpServlet {
             sesjon.setMaxInactiveInterval(loginTime);
             sesjon.setAttribute("bruker",passord );
 
-            // Inn noe kode her i forbindelse med oppretting av sesjonsdata?
             sesjon.setAttribute("cart", new Cart());
-
-
             response.sendRedirect(WEBSHOP_URL);
         }
 
