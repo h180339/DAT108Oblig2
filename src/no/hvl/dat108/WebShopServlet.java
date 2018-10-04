@@ -91,7 +91,7 @@ public class WebShopServlet extends HttpServlet {
 			Cart cart = (Cart) sesjon.getAttribute("cart");
 
 			if (request.getParameter("sletting") != null) {
-				String sletteItemNavn = request.getParameter("sletting");
+				String sletteItemNavn = StringEscapeUtils.escapeHtml4(request.getParameter("sletting"));
 				CartItem sletteItem = (CartItem) sesjon.getAttribute(sletteItemNavn);
 				cart.removeItem(sletteItem);
 			}else {
