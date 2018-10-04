@@ -61,11 +61,7 @@ public class WebShopServlet extends HttpServlet {
 					out.println("<p>" + "<button style=\"margin-right:20px\" type=\"submit\" value=\"" + item.getName() + "\" name=\"sletting\"/>slett </button>" + item.getName() + "</p>");
 				}
 			}
-			/*
-			for (CartItem item : cart.getItems()) {
-				out.println("<p>" + "<button style=\"margin-right:20px\" type=\"submit\" value=\"" + item.getName() + "\" name=\"sletting\"/>slett </button>" + item.getName() + "</p>");
-			}
-			*/
+
 			out.println("</form>");
 
 			out.println("</body>");
