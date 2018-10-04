@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import static no.hvl.dat108.UrlMappings.LOGIN_URL;
 import static no.hvl.dat108.UrlMappings.WEBSHOP_URL;
@@ -54,9 +55,17 @@ public class WebShopServlet extends HttpServlet {
 
 			// Inn noe kode her for å vise innhold i handlevogn:
 			out.println("<form action=\"" + WEBSHOP_URL + "\" method=\"post\">");
+			List<CartItem> list = cart.getItems();
+			synchronized (list) {
+				for (CartItem item : list) {
+					out.println("<p>" + "<button style=\"margin-right:20px\" type=\"submit\" value=\"" + item.getName() + "\" name=\"sletting\"/>slett </button>" + item.getName() + "</p>");
+				}
+			}
+			/*
 			for (CartItem item : cart.getItems()) {
 				out.println("<p>" + "<button style=\"margin-right:20px\" type=\"submit\" value=\"" + item.getName() + "\" name=\"sletting\"/>slett </button>" + item.getName() + "</p>");
 			}
+			*/
 			out.println("</form>");
 
 			out.println("</body>");

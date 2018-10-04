@@ -1,11 +1,12 @@
 package no.hvl.dat108;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Cart {
     
-    private List<CartItem> items = new ArrayList<>();
+    private List<CartItem> items = Collections.synchronizedList(new ArrayList<>());
     
     public void addItem(CartItem item) {
         items.add(item);
